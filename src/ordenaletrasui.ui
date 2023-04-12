@@ -135,6 +135,12 @@
      <pointsize>18</pointsize>
     </font>
    </property>
+   <property name="layoutDirection">
+    <enum>Qt::RightToLeft</enum>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+   </property>
   </widget>
   <widget class="QLineEdit" name="tiempo2">
    <property name="geometry">
@@ -149,6 +155,12 @@
     <font>
      <pointsize>18</pointsize>
     </font>
+   </property>
+   <property name="layoutDirection">
+    <enum>Qt::RightToLeft</enum>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
    </property>
   </widget>
   <widget class="QLineEdit" name="tiempo3">
@@ -165,6 +177,12 @@
      <pointsize>18</pointsize>
     </font>
    </property>
+   <property name="layoutDirection">
+    <enum>Qt::RightToLeft</enum>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+   </property>
   </widget>
   <widget class="QLineEdit" name="tiempo4">
    <property name="geometry">
@@ -180,6 +198,12 @@
      <pointsize>18</pointsize>
     </font>
    </property>
+   <property name="layoutDirection">
+    <enum>Qt::RightToLeft</enum>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+   </property>
   </widget>
   <widget class="QLineEdit" name="tiempo5">
    <property name="geometry">
@@ -194,6 +218,12 @@
     <font>
      <pointsize>18</pointsize>
     </font>
+   </property>
+   <property name="layoutDirection">
+    <enum>Qt::RightToLeft</enum>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
    </property>
   </widget>
   <widget class="QLabel" name="tMedio">
@@ -227,6 +257,12 @@
     <font>
      <pointsize>18</pointsize>
     </font>
+   </property>
+   <property name="layoutDirection">
+    <enum>Qt::RightToLeft</enum>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
    </property>
   </widget>
   <widget class="QPushButton" name="execAlgoritmo">

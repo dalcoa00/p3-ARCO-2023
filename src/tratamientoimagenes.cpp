@@ -1,175 +1,12 @@
-/************************** ANTES *********************************/
-//#include "tratamientoimagenes.h"
-//#include "ui_tratamientoimagenes.h"
-//#include <iostream>
-//#include <fstream>
-//#include <algorithm>
-//#include <cctype>
-//#include <chrono>
-//#include <string>
-
-//using namespace std;
-
-//tratamientoImagenes::tratamientoImagenes(QWidget *parent) :
-//    QDialog(parent),
-//    ui(new Ui::tratamientoImagenes)
-//{
-//    ui->setupUi(this);
-
-////    QMenu* menuAbrir = ui->menubar->addMenu("Archivo(s)");
-
-////    menuAbrir->addAction("Abrir...", this , SLOT(abrir_imagen()));
-////    menuAbrir->addAction("Imagenes Demo", this , SLOT(abrirDemo()));
-////    menuAbrir->addAction("Guardar...", this , SLOT(guardar_imagen()));
-////    menuAbrir->addAction("Guardar como...", this , SLOT(guardarComo_imagen()));
-
-////    QMenu* menuEditar = ui->menubar->addMenu("Editar");
-
-////    QMenu* menuFiltros = menuEditar->addMenu("Filtros...");
-
-////    menuFiltros->addAction("Algoritmo", this , SLOT(algoritmo()));
-
-//}
-
-//tratamientoImagenes::~tratamientoImagenes()
-//{
-//    delete ui;
-//}
-
-////void tratamientoImagenes::abrir_imagen(){
-
-////    imagenes = QFileDialog::getOpenFileNames(this, "Escoge una o varias imagenes", "/home", "Images (*.jpg *.xpm *.png *.jpeg)");
-
-////    mostrarImagenes();
-
-////}
-
-////void tratamientoImagenes::guardar_imagen(){
-////    QMessageBox::information(this,"Guardar","Tus imagenes seran guaradas");
-////    for (int i=0; i< imagenes.length(); i++){
-////        QImage image=labels[i]->pixmap().toImage();
-////        image.save(imagenes[i]);
-////    }
-
-
-////}
-
-////void tratamientoImagenes::guardarComo_imagen(){
-
-
-
-////    for(int i =0;i<imagenes.length();i++){
-////        QString imagePath = QFileDialog::getSaveFileName(this, tr("Guardar archivo"), "", tr("JPEG (*.jpg *.jpeg);;PNG (*.png)" ));
-////        QImage image=labels[i]->pixmap().toImage();
-
-////        image.save(imagePath);
-////    }
-
-////}
-
-////void tratamientoImagenes::mostrarImagenes(){
-
-////    for(int i = 0; i < imagenes.length(); i++){
-
-////        QLabel* label = new QLabel;
-
-////        label->setPixmap(QPixmap::fromImage(QImage(imagenes.at(i))));
-
-////        labels.push_back(label);
-
-////        ui->gridLayout->addWidget(label);
-
-////    }
-
-////}
-
-////void tratamientoImagenes::abrirDemo(){
-
-////    imagenes = QStringList();
-
-////    imagenes.push_back(":/demo/imagenes/bicicleta.png");
-////    imagenes.push_back(":/demo/imagenes/avion.png");
-////    imagenes.push_back(":/demo/imagenes/triciclo.png");
-////    imagenes.push_back(":/demo/imagenes/tren.png");
-////    imagenes.push_back(":/demo/imagenes/coche.png");
-////    imagenes.push_back(":/demo/imagenes/cochedeportivo.png");
-////    imagenes.push_back(":/demo/imagenes/motocicleta.png");
-
-////    mostrarImagenes();
-
-////}
-
-
-////void tratamientoImagenes::algoritmo(){
-////    // Abre la imagen original
-////    ifstream imagenes("imagen.bmp", ios::binary);
-
-////    // Lee la cabecera de la imagen
-////    char cabecera[54];
-////    imagenes.read(cabecera, 54);
-
-////    // Lee los datos de la imagen
-////    int ancho = *(int*)&cabecera[18];
-////    int alto = *(int*)&cabecera[22];
-////    int tamano_datos = ancho * alto * 3;
-////    char* datos = new char[tamano_datos];
-////    imagenes.read(datos, tamano_datos);
-
-////    // Invierte la imagen
-////    auto start = chrono::high_resolution_clock::now();
-////    for (int i = 0; i < tamano_datos; i += 3) {
-////        datos[i] = 255 - datos[i]; // Canal Rojo
-////        datos[i+1] = 255 - datos[i+1]; // Canal Verde
-////        datos[i+2] = 255 - datos[i+2]; // Canal Azul
-////    }
-
-////    // Convierte la imagen invertida a blanco y negro
-////    for (int i = 0; i < tamano_datos; i += 3) {
-////        // Calcula la luminosidad del píxel
-////        float r = datos[i];
-////        float g = datos[i+1];
-////        float b = datos[i+2];
-////        float luminosidad = 0.21*r + 0.72*g + 0.07*b;
-
-////        // Asigna la misma luminosidad a los tres canales de color
-////        datos[i] = datos[i+1] = datos[i+2] = (char)luminosidad;
-////    }
-////    auto stop = chrono::high_resolution_clock::now();
-
-////    // Calcula el tiempo de ejecución total
-////    auto duration = chrono::duration_cast<chrono::microseconds>(stop - start);
-////    cout << "Tiempo de ejecución total: " << duration.count() << " microsegundos" << endl;
-
-////    // Guarda la imagen invertida
-////    ofstream imagen_invertida("imagen_invertida.bmp", ios::binary);
-////    imagen_invertida.write(cabecera, 54);
-////    imagen_invertida.write(datos, tamano_datos);
-
-////    // Guarda la imagen en blanco y negro
-////    ofstream imagen_bn("imagen_bn.bmp", ios::binary);
-////    imagen_bn.write(cabecera, 54);
-////    imagen_bn.write(datos, tamano_datos);
-
-////    // Cierra los archivos
-////    imagenes.close();
-////    imagen_invertida.close();
-////    imagen_bn.close();
-
-////}
-
-
-/************************ DESPUÉS *******************/
-
 #include "tratamientoimagenes.h"
 #include "ui_tratamientoimagenes.h"
-#include <iostream>
-#include <fstream>
-#include <algorithm>
-#include <cctype>
-#include <chrono>
-#include <string>
 
 using namespace std;
+
+int contador = 1;
+
+QString directorioEntrada;
+QString directorioSalida;
 
 tratamientoImagenes::tratamientoImagenes(QWidget *parent) :
     QDialog(parent),
@@ -177,6 +14,15 @@ tratamientoImagenes::tratamientoImagenes(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    ui->time1->setReadOnly(true);
+    ui->time2->setReadOnly(true);
+    ui->time3->setReadOnly(true);
+    ui->time4->setReadOnly(true);
+    ui->time5->setReadOnly(true);
+    ui->timeMedio->setReadOnly(true);
+
+    // Conectar el botón selecDirectorio con la función correspondiente
+    connect(ui->selecDirectorio, &QPushButton::clicked, this, &tratamientoImagenes::seleccionarDirectorio);
 }
 
 tratamientoImagenes::~tratamientoImagenes()
@@ -184,67 +30,121 @@ tratamientoImagenes::~tratamientoImagenes()
     delete ui;
 }
 
+void tratamientoImagenes::seleccionarDirectorio()
+{
+    // Abrir un cuadro de diálogo para seleccionar el directorio de entrada
+    directorioEntrada = QFileDialog::getExistingDirectory(this, "Seleccionar directorio de entrada");
 
-
-
-
-void tratamientoImagenes::algoritmo(){
-    // Abre la imagen original
-    ifstream imagenes("imagen.bmp", ios::binary);
-
-    // Lee la cabecera de la imagen
-    char cabecera[54];
-    imagenes.read(cabecera, 54);
-
-    // Lee los datos de la imagen
-    int ancho = *(int*)&cabecera[18];
-    int alto = *(int*)&cabecera[22];
-    int tamano_datos = ancho * alto * 3;
-    char* datos = new char[tamano_datos];
-    imagenes.read(datos, tamano_datos);
-
-    // Invierte la imagen
-    auto start = chrono::high_resolution_clock::now();
-    for (int i = 0; i < tamano_datos; i += 3) {
-        datos[i] = 255 - datos[i]; // Canal Rojo
-        datos[i+1] = 255 - datos[i+1]; // Canal Verde
-        datos[i+2] = 255 - datos[i+2]; // Canal Azul
-    }
-
-    // Convierte la imagen invertida a blanco y negro
-    for (int i = 0; i < tamano_datos; i += 3) {
-        // Calcula la luminosidad del píxel
-        float r = datos[i];
-        float g = datos[i+1];
-        float b = datos[i+2];
-        float luminosidad = 0.21*r + 0.72*g + 0.07*b;
-
-        // Asigna la misma luminosidad a los tres canales de color
-        datos[i] = datos[i+1] = datos[i+2] = (char)luminosidad;
-    }
-    auto stop = chrono::high_resolution_clock::now();
-
-    // Calcula el tiempo de ejecución total
-    auto duration = chrono::duration_cast<chrono::microseconds>(stop - start);
-    cout << "Tiempo de ejecución total: " << duration.count() << " microsegundos" << endl;
-
-    // Guarda la imagen invertida
-    ofstream imagen_invertida("imagen_invertida.bmp", ios::binary);
-    imagen_invertida.write(cabecera, 54);
-    imagen_invertida.write(datos, tamano_datos);
-
-    // Guarda la imagen en blanco y negro
-    ofstream imagen_bn("imagen_bn.bmp", ios::binary);
-    imagen_bn.write(cabecera, 54);
-    imagen_bn.write(datos, tamano_datos);
-
-    // Cierra los archivos
-    imagenes.close();
-    imagen_invertida.close();
-    imagen_bn.close();
-
+    // Abrir un cuadro de diálogo para seleccionar el directorio de salida
+    directorioSalida = QFileDialog::getExistingDirectory(this, "Seleccionar directorio de salida");
 }
 
+void tratamientoImagenes::ejecutarAlgoritmo(const QString &directorioEntrada, const QString &directorioSalida)
+{
+    QDir dirEntrada(directorioEntrada); // Directorio de entrada
+    QDir dirSalida(directorioSalida);   // Directorio de salida
 
+    QStringList listaArchivos = dirEntrada.entryList(QDir::Files); // Lista de archivos en el directorio de entrada
 
+    // Calcular tiempo de ejecución
+    QTime tiempoInicio = QTime::currentTime(); // Tiempo de inicio
+    for (int i = 0; i < listaArchivos.size(); ++i) {
+        QString archivoEntrada = listaArchivos.at(i);
+        QString rutaAbsolutaEntrada = dirEntrada.absoluteFilePath(archivoEntrada); // Obtener la ruta absoluta del archivo de entrada
+        QImage imagenEntrada(rutaAbsolutaEntrada);
+        if (!imagenEntrada.isNull()) {
+            QImage imagenModificada = aplicarAlgoritmo(imagenEntrada); // Aplicar el algoritmo a la imagen
+            QString archivoSalida = dirSalida.absoluteFilePath(archivoEntrada);
+            if (imagenModificada.save(archivoSalida)) {
+                qDebug() << "Imagen modificada guardada en:" << archivoSalida;
+            } else {
+                qDebug() << "Error al guardar la imagen modificada en:" << archivoSalida;
+            }
+        } else {
+            qDebug() << "Error al cargar la imagen de entrada:" << archivoEntrada;
+        }
+    }
+    QTime tiempoFin = QTime::currentTime(); // Tiempo de fin
 
+    long long tiempoEjecucion = tiempoInicio.msecsTo(tiempoFin); // Tiempo de ejecución en milisegundos
+
+    escribirTiempoEjecucion(tiempoEjecucion); // Escribir tiempo de ejecución en los cuadros de texto
+}
+
+void tratamientoImagenes::escribirTiempoEjecucion(long long tiempoEjecucion)
+{
+    // Escribir el tiempo de ejecución en el cuadro de texto correspondiente
+    switch (contador) {
+    case 1:
+        ui->time1->setText(QString::number(tiempoEjecucion));
+        break;
+    case 2:
+        ui->time2->setText(QString::number(tiempoEjecucion));
+        break;
+    case 3:
+        ui->time3->setText(QString::number(tiempoEjecucion));
+        break;
+    case 4:
+        ui->time4->setText(QString::number(tiempoEjecucion));
+        break;
+    case 5:
+        ui->time5->setText(QString::number(tiempoEjecucion));
+        break;
+    }
+
+    // Calcular el tiempo medio de ejecución
+    if (contador == 5) {
+        long long tiempoMedio = (ui->time1->text().toLongLong() +
+                                 ui->time2->text().toLongLong() +
+                                 ui->time3->text().toLongLong() +
+                                 ui->time4->text().toLongLong() +
+                                 ui->time5->text().toLongLong()) / 5;
+        ui->timeMedio->setText(QString::number(tiempoMedio));
+        contador = 1; // Reiniciar el contador
+    } else {
+        contador++; // Incrementar el contador
+    }
+}
+
+QImage tratamientoImagenes::aplicarAlgoritmo(const QImage &imagen)
+{
+    // Invertir la imagen
+    QImage imagenInvertida = imagen.mirrored(true, false);
+
+    // Convertir la imagen a blanco y negro
+    QImage imagenBlancoNegro = imagenInvertida.convertToFormat(QImage::Format_Grayscale8);
+
+    return imagenBlancoNegro;
+}
+
+void tratamientoImagenes::on_execImagenes_clicked()
+{
+    QMessageBox message;
+
+    if(directorioEntrada.isNull() || directorioSalida.isNull()){
+        message.setText("Tienes que seleccionar directorios. En caso de haber clickado RESET, vuelva a seleccionar.");
+        message.exec();
+        return;
+    }
+
+    // Verificar que ambos directorios han sido seleccionados
+    if (!directorioEntrada.isEmpty() && !directorioSalida.isEmpty()) {
+        // Ejecutar el algoritmo en las imágenes del directorio de entrada
+        ejecutarAlgoritmo(directorioEntrada, directorioSalida);
+    }
+}
+
+void tratamientoImagenes::on_resetImagenes_clicked()
+{
+    ui->time1->clear();
+    ui->time2->clear();
+    ui->time3->clear();
+    ui->time4->clear();
+    ui->time5->clear();
+    ui->timeMedio->clear();
+
+    contador = 1;
+
+    directorioEntrada = NULL;
+    directorioSalida = NULL;
+}

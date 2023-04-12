@@ -1,9 +1,6 @@
 #include "ordenaletrasui.h"
+#include "qmessagebox.h"
 #include "ui_ordenaletrasui.h"
-//#include <iostream>
-//#include <ostream>
-//#include <fstream>
-//#include <QFileDialog>
 
 ordenaletrasui::ordenaletrasui(QWidget *parent) :
     QDialog(parent),
@@ -46,11 +43,7 @@ bool ordenaletrasui::isUnwantedChar(char c) {
 }
 
 void ordenaletrasui::execAlgorithm() {
-//    std::ifstream inputFile;
-//    std::ofstream outputFile;
     const int numExecutions = 5; // Número de ejecuciones
-//    QString fileName = QFileDialog::getOpenFileName(this, tr("Escoger archivo"), "", tr("Archivos de Texto (*.txt);;Todos los archivos (*.*)"));
-//    std::string fileNameStr = fileName.toStdString();
     inputFile.open(fileNameStr);
     outputFileNameStr = "output.txt"; // Nombre del archivo de salida
     outputFile.open(outputFileNameStr);
@@ -136,7 +129,17 @@ void ordenaletrasui::execAlgorithm() {
 
 void ordenaletrasui::on_execAlgoritmo_clicked()
 {
+    QMessageBox message;
+
+    if(!fileName.isNull())
+    {
         execAlgorithm();
+    }else
+    {
+        message.setText("Tienes que seleccionar la input.");
+        message.exec();
+        return;
+    }
 }
 
 void ordenaletrasui::on_reset_clicked()
@@ -148,29 +151,15 @@ void ordenaletrasui::on_reset_clicked()
     ui->tiempo5->clear();
     ui->tiempoMedio->clear();
 
+    fileName = NULL;
+
     outputFile.open(outputFileNameStr);
     outputFile.close();
 }
 
 void ordenaletrasui::on_selecArchivo_clicked()
 {
-
     fileName = QFileDialog::getOpenFileName(this, tr("Escoger archivo"), "", tr("Archivos de Texto (*.txt);;Todos los archivos (*.*)"));
     fileNameStr = fileName.toStdString();
-//    inputFile.open(fileNameStr);
-//    outputFileNameStr = "output.txt"; // Nombre del archivo de salida
-//    outputFile.open(outputFileNameStr);
-
-//    if (!inputFile.is_open()) {
-//        std::cerr << "Error: no se pudo abrir el archivo de entrada." << std::endl;
-//        return;
-//    }
-
-//    if (!outputFile.is_open()) {
-//        std::cerr << "Error: no se pudo abrir el archivo de salida." << std::endl;
-//        return;
-//    }
-
-//    std::getline(inputFile, inputText);
 }
 

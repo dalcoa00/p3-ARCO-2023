@@ -17,6 +17,7 @@ class ordenaletrasui : public QDialog
     Q_OBJECT
 
 public:
+    int contador = 1;
     explicit ordenaletrasui(QWidget *parent = nullptr);
     ~ordenaletrasui();
     bool static compareChars(char a, char b);
@@ -26,15 +27,13 @@ public:
 private slots:
     void on_execAlgoritmo_clicked();
     void on_reset_clicked();
-
     void on_selecArchivo_clicked();
 
 private:
     Ui::ordenaletrasui *ui;
-
     std::ifstream inputFile;
     std::ofstream outputFile;
-    QString fileName;
+    QString fileName = NULL;
     std::string fileNameStr;
     std::string outputFileNameStr;
     std::string inputText;
