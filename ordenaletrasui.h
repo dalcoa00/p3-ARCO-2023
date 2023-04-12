@@ -3,6 +3,11 @@
 
 #include <QDialog>
 
+#include <iostream>
+#include <ostream>
+#include <fstream>
+#include <QFileDialog>
+
 namespace Ui {
 class ordenaletrasui;
 }
@@ -22,8 +27,19 @@ private slots:
     void on_execAlgoritmo_clicked();
     void on_reset_clicked();
 
+    void on_selecArchivo_clicked();
+
 private:
     Ui::ordenaletrasui *ui;
+
+    std::ifstream inputFile;
+    std::ofstream outputFile;
+    QString fileName;
+    std::string fileNameStr;
+    std::string outputFileNameStr;
+    std::string inputText;
+
+
 };
 
 #endif // ORDENALETRASUI_H

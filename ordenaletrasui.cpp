@@ -1,15 +1,22 @@
 #include "ordenaletrasui.h"
 #include "ui_ordenaletrasui.h"
-#include <iostream>
-#include <ostream>
-#include <fstream>
-#include <QFileDialog>
+//#include <iostream>
+//#include <ostream>
+//#include <fstream>
+//#include <QFileDialog>
 
 ordenaletrasui::ordenaletrasui(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::ordenaletrasui)
 {
     ui->setupUi(this);
+
+    ui->tiempo1->setReadOnly(true);
+    ui->tiempo2->setReadOnly(true);
+    ui->tiempo3->setReadOnly(true);
+    ui->tiempo4->setReadOnly(true);
+    ui->tiempo5->setReadOnly(true);
+    ui->tiempoMedio->setReadOnly(true);
 }
 
 ordenaletrasui::~ordenaletrasui()
@@ -39,27 +46,27 @@ bool ordenaletrasui::isUnwantedChar(char c) {
 }
 
 void ordenaletrasui::execAlgorithm() {
-    std::ifstream inputFile;
-    std::ofstream outputFile;
+//    std::ifstream inputFile;
+//    std::ofstream outputFile;
     const int numExecutions = 5; // Número de ejecuciones
-    QString fileName = QFileDialog::getOpenFileName(this, tr("Escoger archivo"), "", tr("Archivos de Texto (*.txt);;Todos los archivos (*.*)"));
-    std::string fileNameStr = fileName.toStdString();
-    inputFile.open(fileNameStr);
-    std::string outputFileNameStr = "output.txt"; // Nombre del archivo de salida
-    outputFile.open(outputFileNameStr);
+//    QString fileName = QFileDialog::getOpenFileName(this, tr("Escoger archivo"), "", tr("Archivos de Texto (*.txt);;Todos los archivos (*.*)"));
+//    std::string fileNameStr = fileName.toStdString();
+//    inputFile.open(fileNameStr);
+//    std::string outputFileNameStr = "output.txt"; // Nombre del archivo de salida
+//    outputFile.open(outputFileNameStr);
 
-    if (!inputFile.is_open()) {
-        std::cerr << "Error: no se pudo abrir el archivo de entrada." << std::endl;
-        return;
-    }
+//    if (!inputFile.is_open()) {
+//        std::cerr << "Error: no se pudo abrir el archivo de entrada." << std::endl;
+//        return;
+//    }
 
-    if (!outputFile.is_open()) {
-        std::cerr << "Error: no se pudo abrir el archivo de salida." << std::endl;
-        return;
-    }
+//    if (!outputFile.is_open()) {
+//        std::cerr << "Error: no se pudo abrir el archivo de salida." << std::endl;
+//        return;
+//    }
 
-    std::string inputText;
-    std::getline(inputFile, inputText);
+//    std::string inputText;
+//    std::getline(inputFile, inputText);
 
     // Eliminar caracteres no deseados del texto de entrada
     inputText.erase(std::remove_if(inputText.begin(), inputText.end(), isUnwantedChar), inputText.end());
@@ -91,6 +98,7 @@ void ordenaletrasui::execAlgorithm() {
         outputFile << "Fin del intento numero " << i + 1 << "\n\n\n\n\n\n";
         auto endPartialTime = std::chrono::steady_clock::now();
         auto elapsedPartialTime = std::chrono::duration_cast<std::chrono::milliseconds>(endPartialTime - startPartialTime).count();
+
         switch(i)
         {
             case 0:
@@ -128,7 +136,7 @@ void ordenaletrasui::execAlgorithm() {
 
 void ordenaletrasui::on_execAlgoritmo_clicked()
 {
-    execAlgorithm();
+        execAlgorithm();
 }
 
 void ordenaletrasui::on_reset_clicked()
@@ -140,3 +148,26 @@ void ordenaletrasui::on_reset_clicked()
     ui->tiempo5->clear();
     ui->tiempoMedio->clear();
 }
+
+void ordenaletrasui::on_selecArchivo_clicked()
+{
+
+    fileName = QFileDialog::getOpenFileName(this, tr("Escoger archivo"), "", tr("Archivos de Texto (*.txt);;Todos los archivos (*.*)"));
+    fileNameStr = fileName.toStdString();
+    inputFile.open(fileNameStr);
+    outputFileNameStr = "output.txt"; // Nombre del archivo de salida
+    outputFile.open(outputFileNameStr);
+
+    if (!inputFile.is_open()) {
+        std::cerr << "Error: no se pudo abrir el archivo de entrada." << std::endl;
+        return;
+    }
+
+    if (!outputFile.is_open()) {
+        std::cerr << "Error: no se pudo abrir el archivo de salida." << std::endl;
+        return;
+    }
+
+    std::getline(inputFile, inputText);
+}
+

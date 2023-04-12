@@ -23,20 +23,20 @@ class tratamientoImagenes : public QDialog
 public:
     explicit tratamientoImagenes(QWidget *parent = nullptr);
     ~tratamientoImagenes();
-    std::vector<float>executionTime;
+//    std::vector<float>executionTime;
 
 private:
     Ui::tratamientoImagenes *ui;
-    QStringList imagenes;
-    void mostrarImagenes();
-    std::vector<QLabel*> labels;
+//    QStringList imagenes;
+//    void mostrarImagenes();
+//    std::vector<QLabel*> labels;
 
 private slots:
-    void abrir_imagen();
-    void guardar_imagen();
-    void guardarComo_imagen();
-    void abrirDemo();
-    void algoritmo();
+//    void abrir_imagen();
+//    void guardar_imagen();
+//    void guardarComo_imagen();
+//    void abrirDemo();
+//    void algoritmo();
 };
 
 #endif // TRATAMIENTOIMAGENES_H
