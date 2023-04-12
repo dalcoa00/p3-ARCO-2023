@@ -1,5 +1,10 @@
 #include "tratamientoimagenes.h"
 #include "ui_tratamientoimagenes.h"
+#include <iostream>
+#include <fstream>
+#include <algorithm>
+#include <cctype>
+#include <chrono>
 
 tratamientoImagenes::tratamientoImagenes(QWidget *parent) :
     QDialog(parent),
@@ -12,3 +17,5 @@ tratamientoImagenes::~tratamientoImagenes()
 {
     delete ui;
 }
+
+

@@ -14,6 +14,13 @@ class ordenaletrasui : public QDialog
 public:
     explicit ordenaletrasui(QWidget *parent = nullptr);
     ~ordenaletrasui();
+    bool static compareChars(char a, char b);
+    bool static isUnwantedChar(char c);
+    void execAlgorithm();
+
+private slots:
+    void on_execAlgoritmo_clicked();
+    void on_reset_clicked();
 
 private:
     Ui::ordenaletrasui *ui;
