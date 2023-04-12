@@ -10,13 +10,19 @@ CONFIG += c++17
 
 SOURCES += \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    ordenaletrasui.cpp \
+    tratamientoimagenes.cpp
 
 HEADERS += \
-    mainwindow.h
+    mainwindow.h \
+    ordenaletrasui.h \
+    tratamientoimagenes.h
 
 FORMS += \
-    mainwindow.ui
+    mainwindow.ui \
+    ordenaletrasui.ui \
+    tratamientoimagenes.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
