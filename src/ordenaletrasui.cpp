@@ -51,22 +51,22 @@ void ordenaletrasui::execAlgorithm() {
     const int numExecutions = 5; // Número de ejecuciones
 //    QString fileName = QFileDialog::getOpenFileName(this, tr("Escoger archivo"), "", tr("Archivos de Texto (*.txt);;Todos los archivos (*.*)"));
 //    std::string fileNameStr = fileName.toStdString();
-//    inputFile.open(fileNameStr);
-//    std::string outputFileNameStr = "output.txt"; // Nombre del archivo de salida
-//    outputFile.open(outputFileNameStr);
+    inputFile.open(fileNameStr);
+    outputFileNameStr = "output.txt"; // Nombre del archivo de salida
+    outputFile.open(outputFileNameStr);
 
-//    if (!inputFile.is_open()) {
-//        std::cerr << "Error: no se pudo abrir el archivo de entrada." << std::endl;
-//        return;
-//    }
+    if (!inputFile.is_open()) {
+        std::cerr << "Error: no se pudo abrir el archivo de entrada." << std::endl;
+        return;
+    }
 
-//    if (!outputFile.is_open()) {
-//        std::cerr << "Error: no se pudo abrir el archivo de salida." << std::endl;
-//        return;
-//    }
+    if (!outputFile.is_open()) {
+        std::cerr << "Error: no se pudo abrir el archivo de salida." << std::endl;
+        return;
+    }
 
-//    std::string inputText;
-//    std::getline(inputFile, inputText);
+    //std::string inputText;
+    std::getline(inputFile, inputText);
 
     // Eliminar caracteres no deseados del texto de entrada
     inputText.erase(std::remove_if(inputText.begin(), inputText.end(), isUnwantedChar), inputText.end());
@@ -147,6 +147,9 @@ void ordenaletrasui::on_reset_clicked()
     ui->tiempo4->clear();
     ui->tiempo5->clear();
     ui->tiempoMedio->clear();
+
+    outputFile.open(outputFileNameStr);
+    outputFile.close();
 }
 
 void ordenaletrasui::on_selecArchivo_clicked()
@@ -154,20 +157,20 @@ void ordenaletrasui::on_selecArchivo_clicked()
 
     fileName = QFileDialog::getOpenFileName(this, tr("Escoger archivo"), "", tr("Archivos de Texto (*.txt);;Todos los archivos (*.*)"));
     fileNameStr = fileName.toStdString();
-    inputFile.open(fileNameStr);
-    outputFileNameStr = "output.txt"; // Nombre del archivo de salida
-    outputFile.open(outputFileNameStr);
+//    inputFile.open(fileNameStr);
+//    outputFileNameStr = "output.txt"; // Nombre del archivo de salida
+//    outputFile.open(outputFileNameStr);
 
-    if (!inputFile.is_open()) {
-        std::cerr << "Error: no se pudo abrir el archivo de entrada." << std::endl;
-        return;
-    }
+//    if (!inputFile.is_open()) {
+//        std::cerr << "Error: no se pudo abrir el archivo de entrada." << std::endl;
+//        return;
+//    }
 
-    if (!outputFile.is_open()) {
-        std::cerr << "Error: no se pudo abrir el archivo de salida." << std::endl;
-        return;
-    }
+//    if (!outputFile.is_open()) {
+//        std::cerr << "Error: no se pudo abrir el archivo de salida." << std::endl;
+//        return;
+//    }
 
-    std::getline(inputFile, inputText);
+//    std::getline(inputFile, inputText);
 }
 
